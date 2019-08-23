@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "activerecord/bulk_insert"
+require "activerecord-bulk_insert"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
