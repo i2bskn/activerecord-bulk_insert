@@ -20,15 +20,23 @@ module ActiveRecord
           records.flatten
         }
 
-        result
+        result.flatten
       end
 
       private
 
         def build_attributes(objects)
-          keys = changed_keys(objects)
+          keys = [required_keys, changed_keys(objects)].flatten.uniq
 
           objects.map { |object| Hash[keys.map { |k| [k, object.public_send(k)] }] }
+        end
+
+        def required_keys
+          @required_keys ||= columns.map { |column|
+            next if column.null
+
+            column.name
+          }.compact - [primary_key]
         end
 
         def changed_keys(objects)
