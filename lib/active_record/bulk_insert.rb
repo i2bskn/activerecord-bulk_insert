@@ -9,15 +9,19 @@ module ActiveRecord
     extend ActiveSupport::Concern
 
     class_methods do
-      def bulk_insert(objects)
+      def bulk_insert(objects, ignore_new_record: true)
         result = objects.group_by(&:new_record?).map { |is_new_record, records|
           if is_new_record
-            insert_all!(build_attributes(records))
+            if ignore_new_record
+              records.each(&:save!)
+            else
+              insert_all!(build_attributes(records))
+            end
           else
             upsert_all(build_attributes(records))
           end
 
-          records.flatten
+          records
         }
 
         result.flatten

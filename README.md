@@ -1,28 +1,31 @@
 # Activerecord::BulkInsert
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/activerecord/bulk_insert`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+`activerecord-bulk_insert` is provide bulk update and insert for ActiveRecord.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'activerecord-bulk_insert'
+gem "activerecord-bulk_insert"
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install activerecord-bulk_insert
-
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+users = [*1..10].map { |i| User.new(name: "user#{i}") }
+User.bulk_insert(users, ignore_new_record: false)
+
+users = User.all
+users.each do |user|
+  user.name = "user#{user.id * 2}"
+end
+User.bulk_insert(users)
+```
 
 ## Development
 
