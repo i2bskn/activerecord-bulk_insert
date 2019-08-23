@@ -1,0 +1,57 @@
+AllCops:
+  TargetRubyVersion: 2.6
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - "lib/seed_gimmick/seed/difference.rb" # FIXME: AbcSize
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - "lib/seed_gimmick/seed/difference.rb" # FIXME: MethodLength
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyElse:
+  EnforcedStyle: empty
+
+Style/FormatString:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/HashSyntax:
+  Exclude:
+    - "Rakefile"
+    - "**/*.rake"
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/NumericLiterals:
+  MinDigits: 7
+  Strict: true
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
