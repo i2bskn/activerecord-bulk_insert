@@ -10,8 +10,35 @@ module ActiveRecord
 
     class_methods do
       def bulk_insert(objects)
-        puts objects
+        result = objects.group_by(&:new_record?).map { |is_new_record, records|
+          if is_new_record
+            insert_all!(build_attributes(records))
+          else
+            upsert_all(build_attributes(records))
+          end
+
+          records.flatten
+        }
+
+        result
       end
+
+      private
+
+        def build_attributes(objects)
+          keys = changed_keys(objects)
+
+          objects.map { |object| Hash[keys.map { |k| [k, object.public_send(k)] }] }
+        end
+
+        def changed_keys(objects)
+          now = Time.current
+          objects.map { |object|
+            object.updated_at = now
+            object.created_at ||= now
+            object.changed_attributes.keys
+          }.flatten.uniq.compact
+        end
     end
   end
 end
