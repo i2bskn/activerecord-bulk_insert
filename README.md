@@ -1,5 +1,8 @@
 # Activerecord::BulkInsert
 
+[![Gem Version](https://badge.fury.io/rb/activerecord-bulk_insert.svg)](https://badge.fury.io/rb/activerecord-bulk_insert)
+[![Build Status](https://travis-ci.org/i2bskn/activerecord-bulk_insert.svg?branch=master)](https://travis-ci.org/i2bskn/activerecord-bulk_insert)
+
 `activerecord-bulk_insert` is provide bulk update and insert for ActiveRecord.
 
 ## Installation

@@ -1,13 +1,42 @@
 AllCops:
   TargetRubyVersion: 2.6
+  Exclude:
+    - "node_modules/**/*"
+    - "vendor/**/*"
+
+Layout/IndentFirstArrayElement:
+  EnforcedStyle: consistent
+
+Layout/IndentFirstHashElement:
+  EnforcedStyle: consistent
 
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
 
-Metrics/AbcSize:
-  Max: 20
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+
+Lint/AmbiguousBlockAssociation:
   Exclude:
-    - "lib/seed_gimmick/seed/difference.rb" # FIXME: AbcSize
+    - "spec/**/*_spec.rb"
+
+Lint/InheritException:
+  EnforcedStyle: standard_error
+
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false
+
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 24
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*.rb"
+    - "Gemfile"
+    - "*.gemspec"
 
 Metrics/CyclomaticComplexity:
   Max: 10
@@ -17,23 +46,59 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   Max: 20
+
+Naming/FileName:
   Exclude:
-    - "lib/seed_gimmick/seed/difference.rb" # FIXME: MethodLength
+    - "lib/activerecord-bulk_insert.rb"
+
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+
+Security/YAMLLoad:
+  Enabled: false
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/AsciiComments:
+  Enabled: false
 
 Style/BlockDelimiters:
   Enabled: false
 
+Style/BracesAroundHashParameters:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CollectionMethods:
+  PreferredMethods:
+    detect: "detect"
+    find: "detect"
+    inject: "inject"
+    reduce: "inject"
+
 Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/EmptyCaseCondition:
   Enabled: false
 
 Style/EmptyElse:
   EnforcedStyle: empty
 
-Style/FormatString:
-  Enabled: false
+Style/EmptyMethod:
+  EnforcedStyle: expanded
 
-Style/FormatStringToken:
-  Enabled: false
+Style/FormatString:
+  EnforcedStyle: percent
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -41,21 +106,59 @@ Style/FrozenStringLiteralComment:
 Style/HashSyntax:
   Exclude:
     - "Rakefile"
-    - "**/*.rake"
 
 Style/MultilineBlockChain:
   Enabled: false
+
+Style/MixinUsage:
+  Exclude:
+    - "bin/setup"
 
 Style/NumericLiterals:
   MinDigits: 7
   Strict: true
 
+Style/NumericPredicate:
+  Enabled: false
+
+Style/OrAssignment:
+  Enabled: false
+
 Style/PercentLiteralDelimiters:
   Enabled: false
+
+Style/PreferredHashMethods:
+  EnforcedStyle: verbose
+
+Style/RedundantReturn:
+  AllowMultipleReturnValues: true
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/RescueStandardError:
+  EnforcedStyle: implicit
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
-Naming/FileName:
-  Exclude:
-    - "lib/activerecord-bulk_insert.rb"
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/TernaryParentheses:
+  EnforcedStyle: require_parentheses_when_complex
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/WordArray:
+  Enabled: false
